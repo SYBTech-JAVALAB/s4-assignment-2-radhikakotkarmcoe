@@ -1,0 +1,75 @@
+import java.util.Scanner;
+class Student {
+private String name;
+private int id;
+private double marks;
+private char grade;
+public static final String COURSE_NAME="Artificial intelligence";
+private static int studentCount=0;
+public Student() {
+name="Unknown";
+id=0;
+marks=0.0;
+
+grade='F';
+studentCount++;
+}
+public Student(String n,int d, double m)
+{
+name=n;
+id=d;
+marks=m;
+calculateGrade();
+studentCount++;
+}
+private void calculateGrade()
+{
+if(marks>=90)
+grade='A';
+else if(marks>=75)
+grade='B';
+else if(marks>=60)
+grade='C';
+else if(marks>=50)
+grade='D';
+else
+grade='F';
+}
+public void display()
+{
+System.out.println("Course Name:"+COURSE_NAME);
+System.out.println("Student Name:"+name);
+System.out.println("Student ID:"+id);
+System.out.println("Marks:"+marks);
+System.out.println("Grade:"+grade);
+System.out.println("-------------------------------------------------------------------");
+}
+public static int getStudentCount()
+{
+return studentCount;
+}
+}
+public class StudentPerformance
+{
+public static void main(String[] arrgs)
+{
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter number of Students:");
+int n=sc.nextInt();
+for(int i=1;i<=n;i++)
+{
+System.out.println("\nEnter Details for Student"+i);
+System.out.print("Name:");
+sc.nextLine();
+String name=sc.nextLine();
+System.out.println("ID:");
+
+int id=sc.nextInt();
+System.out.println("Marks:");
+double marks=sc.nextDouble();
+Student s=new Student(name,id,marks);
+s.display();
+}
+System.out.println("Total number of students created:"+Student.getStudentCount());
+sc.close();
+}
